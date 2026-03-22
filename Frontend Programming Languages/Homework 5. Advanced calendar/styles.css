@@ -1,0 +1,255 @@
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=DM+Mono:wght@300;400;500&display=swap');
+
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: 'DM Mono', monospace;
+  background-color: #e8f5e9;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #0d1b3e;
+}
+
+#app {
+  width: 100%;
+  max-width: 900px;
+  padding: 2rem 1rem;
+}
+
+.cal-card {
+  background: #fff;
+  border: 1px solid #a5d6a7;
+  border-radius: 16px;
+  box-shadow: 0 4px 40px rgba(13, 27, 62, 0.09);
+  overflow: hidden;
+}
+
+.cal-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1.2rem 1.5rem;
+  border-bottom: 1px solid #a5d6a7;
+  background: linear-gradient(135deg, #f1f8f1 0%, #e3f2fd 100%);
+}
+
+.cal-month-label {
+  text-align: center;
+}
+
+.cal-month-name {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.25rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: #0d1b3e;
+}
+
+.cal-year-name {
+  font-size: 0.68rem;
+  color: #78909c;
+  letter-spacing: 0.1em;
+  font-weight: 300;
+  margin-top: 2px;
+}
+
+.nav-btn {
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
+  border: 1.5px solid #a5d6a7;
+  background: #fff;
+  color: #0d1b3e;
+  font-size: 1.2rem;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background 0.18s, color 0.18s, transform 0.18s;
+  line-height: 1;
+}
+
+.nav-btn:hover {
+  background: #1a3a6b;
+  color: #fff;
+  border-color: #1a3a6b;
+  transform: scale(1.08);
+}
+
+.cal-day-headers {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  padding: 0.6rem 1rem 0.4rem;
+  border-bottom: 1px solid #a5d6a7;
+  background: #f1f8e9;
+}
+
+.cal-day-header {
+  text-align: center;
+  font-size: 0.63rem;
+  font-weight: 500;
+  letter-spacing: 0.15em;
+  color: #78909c;
+  padding: 2px 0;
+}
+
+.cal-day-header.sunday {
+  color: #2e7d32;
+}
+
+.cal-grid {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  animation: slideIn 0.28s cubic-bezier(0.4, 0, 0.2, 1) both;
+}
+
+.cal-grid.from-right { --dir:  40px; }
+.cal-grid.from-left  { --dir: -40px; }
+
+@keyframes slideIn {
+  from { opacity: 0; transform: translateX(var(--dir, 30px)); }
+  to   { opacity: 1; transform: translateX(0); }
+}
+
+.cal-cell {
+  border-right: 1px solid #e8f5e9;
+  border-bottom: 1px solid #e8f5e9;
+  min-height: 90px;
+  padding: 6px;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  cursor: pointer;
+  transition: background 0.15s;
+}
+
+.cal-cell:hover:not(.outside-cell) {
+  background: #f1f8e9;
+}
+
+.cal-cell.outside-cell {
+  background: #fafafa;
+  cursor: default;
+}
+
+.cal-cell.today-cell {
+  background: #e8eef7;
+}
+
+.cal-day {
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.78rem;
+  font-weight: 500;
+  flex-shrink: 0;
+  align-self: flex-start;
+  user-select: none;
+}
+
+.cal-day.outside {
+  color: #b2dfdb;
+}
+
+.cal-day.sunday {
+  color: #2e7d32;
+}
+
+.cal-day.sunday.outside {
+  color: #c8e6c9;
+}
+
+.cal-day.today {
+  background: #1a3a6b;
+  color: #fff;
+}
+
+.note-list {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+}
+
+.note-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 3px;
+  background: #e3f2fd;
+  border-radius: 4px;
+  padding: 2px 5px;
+  font-size: 0.58rem;
+  color: #0d1b3e;
+  word-break: break-word;
+  line-height: 1.4;
+}
+
+.note-text {
+  flex: 1;
+}
+
+.note-remove {
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: #90a4ae;
+  font-size: 0.6rem;
+  line-height: 1;
+  padding: 0;
+  flex-shrink: 0;
+  transition: color 0.15s;
+}
+
+.note-remove:hover {
+  color: #c0392b;
+}
+
+.note-input-wrap {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+  margin-top: 2px;
+}
+
+.note-input {
+  font-family: 'DM Mono', monospace;
+  font-size: 0.6rem;
+  border: 1px solid #a5d6a7;
+  border-radius: 4px;
+  padding: 3px 5px;
+  outline: none;
+  color: #0d1b3e;
+  background: #fff;
+  width: 100%;
+}
+
+.note-input:focus {
+  border-color: #1a3a6b;
+}
+
+.note-save-btn {
+  font-family: 'DM Mono', monospace;
+  font-size: 0.56rem;
+  letter-spacing: 0.06em;
+  background: #1a3a6b;
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  padding: 3px 7px;
+  cursor: pointer;
+  align-self: flex-start;
+  transition: background 0.15s;
+}
+
+.note-save-btn:hover {
+  background: #0d2654;
+}

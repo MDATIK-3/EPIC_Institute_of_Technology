@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>A Web Page</title>
+    <link rel="stylesheet" href="styles.css" />
+</head>
+
+<body>
+    <div id="app">
+        <div class="cal-card">
+
+            <div class="cal-header">
+                <button class="nav-btn" id="prevBtn">&#8249;</button>
+                <div class="cal-month-label">
+                    <div class="cal-month-name" id="monthName"></div>
+                    <div class="cal-year-name" id="yearName"></div>
+                </div>
+                <button class="nav-btn" id="nextBtn">&#8250;</button>
+            </div>
+
+            <div class="cal-day-headers">
+                <div class="cal-day-header sunday">S</div>
+                <div class="cal-day-header">M</div>
+                <div class="cal-day-header">T</div>
+                <div class="cal-day-header">W</div>
+                <div class="cal-day-header">T</div>
+                <div class="cal-day-header">F</div>
+                <div class="cal-day-header">S</div>
+            </div>
+
+            <div id="cal-grid-wrap"></div>
+
+        </div>
+    </div>
+
+    <script src="scripts.js"></script>
+</body>
+
+</html>
